@@ -60,10 +60,10 @@ Select the "Solidity Compiler" tab from the sidebar on the left to begin compili
 Selecting the "Deploy & Run Transactions" tab from the left-hand sidebar will allow you to deploy the contract after the code has been compiled. To register candidates, use the code.Run the code using several candidate details.Verify that the code functions as intended.
 
 
-#Author
+#Writer
 
 @Savreena Kaushal
 
-#License
+#Permit
 
-This Ethintermediate is licensed under the MIT license
+The MIT licence governs this Ethintermediate.
