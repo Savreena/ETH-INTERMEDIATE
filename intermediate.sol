@@ -3,36 +3,36 @@ pragma solidity ^0.8.0;
 
 contract Competition {
     // Define a struct to represent a player with currency and level attributes
-    struct Gamer {
-        uint256 capital;
-        uint256 Rank;
+    struct Player {
+        uint256 currency;
+        uint256 level;
     }
 
     // Mapping to store each player's information by their address
-    mapping(address => Gamer) public players;
+    mapping(address => Player) public playerInfo;
 
     // Function to register a new player with an initial amount of currency
-    function enroll(uint256 initialCapital) public {
-        players[msg.sender] = Gamer(initialCapital, 1); // Level starts at 1
+    function register(uint256 initialCurrency) public {
+        playerInfo[msg.sender] = Player(initialCurrency, 1); // Level starts at 1
     }
 
     // Function to perform an action that costs currency
-    function execute(uint256 value) public {
-        require(players[msg.sender].capital >= value, "currency is insufficient"); // Check for enough currency
-        assert(players[msg.sender].Rank > 0); // Example rule: player must have a positive level
-        players[msg.sender].capital -= value; // Deduct the action cost
+    function performAction(uint256 cost) public {
+        require(playerInfo[msg.sender].currency >= cost, "Insufficient currency"); // Check for enough currency
+        assert(playerInfo[msg.sender].level > 0); // Example rule: player must have a positive level
+        playerInfo[msg.sender].currency -= cost; // Deduct the action cost
     }
 
     // Function to level up a player, which costs a set amount of currency
-    function progress() public {
-        uint256 value = 100; // Define the cost for leveling up
-        require(players[msg.sender].capital >= value, "currency is insufficient"); // Check for enough currency
-        players[msg.sender].capital -= value; // Deduct the level-up cost
-        players[msg.sender].Rank += 1; // Increase the player's level
+    function levelUp() public {
+        uint256 cost = 100; // Define the cost for leveling up
+        require(playerInfo[msg.sender].currency >= cost, "Insufficient currency"); // Check for enough currency
+        playerInfo[msg.sender].currency -= cost; // Deduct the level-up cost
+        playerInfo[msg.sender].level += 1; // Increase the player's level
     }
 
     // Function to revert an invalid move
-    function invalidaction() public pure {
-        revert("Move is invalid");
-    }
+    function invalidMove() public pure {
+        revert("Invalid move");
+    }
 }
