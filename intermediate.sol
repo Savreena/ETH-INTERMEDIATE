@@ -34,5 +34,5 @@ contract Competition {
     // Function to revert an invalid move
     function invalidaction() public pure {
         revert("Move is invalid");
-    }
+    }
 }
